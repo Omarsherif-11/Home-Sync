@@ -1,5 +1,3 @@
-﻿GO
-DROP DATABASE IF EXISTS HomeSync
 GO
 CREATE DATABASE HomeSync;
 GO
@@ -24,7 +22,6 @@ room INT FOREIGN KEY REFERENCES Room,
 birthdate DATETIME,
 age AS YEAR(CURRENT_TIMESTAMP) - YEAR(birthdate),
 );
-/* Admin with one M is key word*/
 CREATE TABLE [Admin](
 admin_id INT PRIMARY KEY FOREIGN KEY REFERENCES Users,
 no_of_guests_allowed INT DEFAULT 30 ,
@@ -110,7 +107,6 @@ method VARCHAR(250),
 [date] DATETIME,
 receipt_no INT,
 deadline DATETIME,
-/* Penatly could be amount of money*/
 penalty INT DEFAULT 0
 );
 
@@ -158,14 +154,12 @@ device_id INT FOREIGN KEY REFERENCES Device,
 [user_id] INT FOREIGN KEY REFERENCES Users,
 activity VARCHAR(250),
 [date] DATETIME,
-/* duration FLOAT(2, 2) bytl3 error*/
 duration INT,
 CONSTRAINT Log_id PRIMARY KEY (room_id, device_id, [user_id], [date])
 );
 
 CREATE TABLE Consumption(
 device_id INT FOREIGN KEY REFERENCES Device,
-/* consumption FLOAT(2, 2) bytl3 error*/
 consumption INT,
 [date] DATETIME,
 CONSTRAINT consumption_id PRIMARY KEY (device_id, [Date])
@@ -203,28 +197,3 @@ monitor_id INT PRIMARY KEY FOREIGN KEY REFERENCES Users,
 camera_id INT,
 room_id INT FOREIGN KEY REFERENCES Room
 );
-
-/*	DROP DATABASE HomeSync;
-	DROP TABLE Room;
-	DROP TABLE Users;
-	DROP TABLE [Admin];
-	DROP TABLE Guest;
-	DROP TABLE Task;
-	DROP TABLE Assigned_to;
-	DROP TABLE Calender;
-	DROP TABLE Notes;
-	DROP TABLE Travel;
-	DROP TABLE User_trip;
-	DROP TABLE Finance;
-	DROP TABLE Health;
-	DROP TABLE Communication;
-	DROP TABLE Communication;
-	DROP TABLE Device;
-	DROP TABLE RoomSchedule;
-	DROP TABLE [Log];
-	DROP TABLE Consumption;
-	DROP TABLE Preferences;
-	DROP TABLE Recommendation;
-	DROP TABLE Inventory;
-	DROP TABLE Camera;
-*/
